@@ -13,7 +13,6 @@ using SocialApp.API.Models;
 
 namespace SocialApp.API.Controllers
 {
-  [Authorize]
   [Route("api/[controller]")]
   [ApiController]
   public class AuthController : ControllerBase
