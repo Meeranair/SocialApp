@@ -9,7 +9,7 @@ using SocialApp.API.Data;
 namespace SocialApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200522190825_ExtendedUserClass")]
+    [Migration("20200529211954_ExtendedUserClass")]
     partial class ExtendedUserClass
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,7 +61,7 @@ namespace SocialApp.API.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DoB")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Gender")

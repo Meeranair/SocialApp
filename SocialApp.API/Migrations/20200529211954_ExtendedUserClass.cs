@@ -24,7 +24,7 @@ namespace SocialApp.API.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "DoB",
+                name: "DateOfBirth",
                 table: "Users",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
@@ -97,7 +97,7 @@ namespace SocialApp.API.Migrations
                 table: "Users");
 
             migrationBuilder.DropColumn(
-                name: "DoB",
+                name: "DateOfBirth",
                 table: "Users");
 
             migrationBuilder.DropColumn(
