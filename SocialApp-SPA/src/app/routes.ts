@@ -18,10 +18,10 @@ export const appRoutes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'member', component: MemberListComponent, resolve: {users: MemberListResolver}},
-      { path: 'member/edit', component: MemberEditComponent, resolve: {user: MemberEditResolver},
+      { path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
+      { path: 'members/edit', component: MemberEditComponent, resolve: {user: MemberEditResolver},
                canDeactivate: [PreventUnsavedChanges]},
-      { path: 'member/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}},
+      { path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}},
       { path: 'messages', component: MessagesComponent},
       { path: 'lists', component: ListsComponent}
     ]

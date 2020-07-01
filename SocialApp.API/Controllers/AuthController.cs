@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -19,10 +20,12 @@ namespace SocialApp.API.Controllers
   {
     private readonly IAuthRepository _repo;
     private readonly IConfiguration _config;
-    public AuthController(IAuthRepository repo, IConfiguration config)
+    private readonly IMapper _mapper;
+    public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper)
     {
       _config = config;
       _repo = repo;
+      _mapper = mapper;
     }
 
     [HttpPost("register")]
@@ -33,14 +36,13 @@ namespace SocialApp.API.Controllers
         if (await _repo.UserExists(userForRegsiterDto.Username))
             return BadRequest("Username already exists");
 
-        var userToCreate = new User
-        {
-            Username = userForRegsiterDto.Username
-        };
+        var userToCreate = _mapper.Map<User>(userForRegsiterDto);
 
         var createdUser = await _repo.Register(userToCreate, userForRegsiterDto.Password);
 
-        return StatusCode(201);
+        var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
+
+        return CreatedAtRoute("GetUser", new {controller = "Users", id = createdUser.Id}, userToReturn);
     }
 
     [HttpPost("login")]
